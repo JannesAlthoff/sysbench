@@ -1,0 +1,31 @@
+#
+# Field descriptions for database.yml
+#
+---
+
+name:
+  title: Machine
+  description: Short name of tested machine
+  required: yes
+
+description:
+  title: Description
+  description: Long description of tested machine
+  nocolumn: yes
+
+source:
+  title: Data source
+  description: URL to test results or test submitter contact page
+  nocolumn: yes
+
+cpu_prime10000:
+  title: CPU prime 10000, events/sec
+  description: --threads=4 --cpu-max-prime=10000 cpu run
+
+cpu_prime20000:
+  title: CPU prime 20000, events/sec
+  description: --threads=4 --cpu-max-prime=20000 cpu run
+
+mem:
+  title: Memory, MiB/sec
+  description:  --threads=4 memory run
