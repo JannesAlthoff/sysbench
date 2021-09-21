@@ -19,3 +19,10 @@ footer {
 td.name {
   min-width: 10em;
 }
+
+td.cpu_prime10000,
+td.cpu_prime20000,
+td.mem {
+  text-align: right;
+  padding-right: 5%;
+}
