@@ -18,6 +18,7 @@ footer {
 
 td.name {
   min-width: 10em;
+  white-space: nowrap;
 }
 
 td.cpu_prime10000,
