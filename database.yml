@@ -5,7 +5,6 @@
 
 - name: Azure E4ds_v4
   description: Virtual machine with support for nested virtualization
-  source: https://github.com/sio
   cpu_prime10000: 3710.00 # events per second, 4 threads
   cpu_prime20000: 1447.48 # events per second, 4 threads
   mem: 10418.27           # MiB/sec, 4 threads
