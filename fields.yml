@@ -21,11 +21,14 @@ source:
 cpu_prime10000:
   title: CPU prime 10000, events/sec
   description: --threads=4 --cpu-max-prime=10000 cpu run
+  convert: int
 
 cpu_prime20000:
   title: CPU prime 20000, events/sec
   description: --threads=4 --cpu-max-prime=20000 cpu run
+  convert: int
 
 mem:
   title: Memory, MiB/sec
   description:  --threads=4 memory run
+  convert: int

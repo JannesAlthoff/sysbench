@@ -12,12 +12,25 @@ BOOTSTRAP_DEFAULT = {
     'js': 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js',
 }
 
+CONVERTERS = {
+    'int': int,
+}
+
 def main():
     '''Build static HTML page from YAML data and Jinja2 templates'''
     with open(FIELDS_FILE) as f:
         fields = yaml.safe_load(f)
     with open(DB_FILE) as f:
         data = yaml.safe_load(f)
+
+    for field_id, field in fields.items():
+        if not field.get('convert'):
+            continue
+        converter = CONVERTERS[field["convert"]]
+        for entry in data:
+            if field_id not in entry:
+                continue
+            entry[field_id] = converter(entry[field_id])
 
     jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_DIR))
     template = jinja_env.get_template('index.html.j2')
