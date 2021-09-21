@@ -1,4 +1,5 @@
 <table id="results" class="table table-hover table-striped">
+  <!-- Column header -->
   <tr>
     {% for field_id, field in fields.items() %}
     {% if not field.nocolumn|default(False) %}
@@ -8,12 +9,17 @@
     {% endif %}
     {% endfor %}
   </tr>
+  <!-- Data rows -->
   {% for entry in data %}
   <tr>
     {% for field_id, field in fields.items() %}
     {% if not field.nocolumn|default(False) %}
     <td class="{{ field_id }}" title="{{ entry.description }}">
+      {% if field_id == "name" and entry.source|default(None) %}
+      <a href="{{ entry.source }}">{{ entry[field_id] }}</a>
+      {% else %}
       {{ entry[field_id] }}
+      {% endif %}
     </td>
     {% endif %}
     {% endfor %}
