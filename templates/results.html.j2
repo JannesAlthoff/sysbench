@@ -1,0 +1,22 @@
+<table id="results">
+  <tr>
+    {% for field_id, field in fields.items() %}
+    {% if not field.nocolumn|default(False) %}
+    <th title="{{ field.description }}">
+      {{ field.title }}
+    </th>
+    {% endif %}
+    {% endfor %}
+  </tr>
+  {% for entry in data %}
+  <tr>
+    {% for field_id, field in fields.items() %}
+    {% if not field.nocolumn|default(False) %}
+    <td class="{{ field_id }}" title="{{ entry.description }}">
+      {{ entry[field_id] }}
+    </td>
+    {% endif %}
+    {% endfor %}
+  </tr>
+  {% endfor %}
+</table>
