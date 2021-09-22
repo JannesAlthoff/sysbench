@@ -2,6 +2,10 @@ build: venv
 	$(VENV)/python build.py
 
 
+clean:
+	git clean -dix
+
+
 include Makefile.venv
 Makefile.venv:
 	curl \
