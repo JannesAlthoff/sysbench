@@ -28,3 +28,18 @@
   cpu_prime10000: 388.49
   cpu_prime20000: 154.86
   mem: 1508.75
+
+- name: Pentium J5005
+  cpu_prime10000: 6447
+  cpu_prime20000: 2462
+  mem: 8303
+
+- name: Xeon E3 1225 v2
+  cpu_prime10000: 4321
+  cpu_prime20000: 1680
+  mem: 11853
+
+- name: AMD GX-217GA
+  cpu_prime10000: 1567
+  cpu_prime20000: 613
+  mem: 2783
