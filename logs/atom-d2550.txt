@@ -1,0 +1,167 @@
+make[1]: Entering directory '/home/ubuntu/.common'
+Sat Aug  7 16:38:03 UTC 2021
+lscpu || cat /proc/cpuinfo
+Architecture:                    x86_64
+CPU op-mode(s):                  32-bit, 64-bit
+Byte Order:                      Little Endian
+Address sizes:                   36 bits physical, 48 bits virtual
+CPU(s):                          4
+On-line CPU(s) list:             0-3
+Thread(s) per core:              2
+Core(s) per socket:              2
+Socket(s):                       1
+NUMA node(s):                    1
+Vendor ID:                       GenuineIntel
+CPU family:                      6
+Model:                           54
+Model name:                      Intel(R) Atom(TM) CPU D2550   @ 1.86GHz
+Stepping:                        1
+CPU MHz:                         1861.975
+BogoMIPS:                        3723.95
+L1d cache:                       48 KiB
+L1i cache:                       64 KiB
+L2 cache:                        1 MiB
+NUMA node0 CPU(s):               0-3
+Vulnerability Itlb multihit:     Not affected
+Vulnerability L1tf:              Not affected
+Vulnerability Mds:               Not affected
+Vulnerability Meltdown:          Not affected
+Vulnerability Spec store bypass: Not affected
+Vulnerability Spectre v1:        Not affected
+Vulnerability Spectre v2:        Not affected
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
+Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx lm constant_tsc arch_perfmon pebs bts rep_good nopl nonstop_tsc cpuid aperfmperf pni dtes64 monitor ds_cpl tm2 ssse3 cx16 xtpr pdcm movbe lahf_lm dtherm arat
+free -h || free -m
+              total        used        free      shared  buff/cache   available
+Mem:          1.9Gi       236Mi       172Mi       368Mi       1.5Gi       1.1Gi
+Swap:            0B          0B          0B
+lspci -nn
+00:00.0 Host bridge [0600]: Intel Corporation Atom Processor D2xxx/N2xxx DRAM Controller [8086:0bf3] (rev 04)
+00:02.0 VGA compatible controller [0300]: Intel Corporation Atom Processor D2xxx/N2xxx Integrated Graphics Controller [8086:0be2] (rev 0b)
+00:1b.0 Audio device [0403]: Intel Corporation NM10/ICH7 Family High Definition Audio Controller [8086:27d8] (rev 02)
+00:1c.0 PCI bridge [0604]: Intel Corporation NM10/ICH7 Family PCI Express Port 1 [8086:27d0] (rev 02)
+00:1c.1 PCI bridge [0604]: Intel Corporation NM10/ICH7 Family PCI Express Port 2 [8086:27d2] (rev 02)
+00:1d.0 USB controller [0c03]: Intel Corporation NM10/ICH7 Family USB UHCI Controller #1 [8086:27c8] (rev 02)
+00:1d.1 USB controller [0c03]: Intel Corporation NM10/ICH7 Family USB UHCI Controller #2 [8086:27c9] (rev 02)
+00:1d.2 USB controller [0c03]: Intel Corporation NM10/ICH7 Family USB UHCI Controller #3 [8086:27ca] (rev 02)
+00:1d.3 USB controller [0c03]: Intel Corporation NM10/ICH7 Family USB UHCI Controller #4 [8086:27cb] (rev 02)
+00:1d.7 USB controller [0c03]: Intel Corporation NM10/ICH7 Family USB2 EHCI Controller [8086:27cc] (rev 02)
+00:1e.0 PCI bridge [0604]: Intel Corporation 82801 Mobile PCI Bridge [8086:2448] (rev e2)
+00:1f.0 ISA bridge [0601]: Intel Corporation NM10 Family LPC Controller [8086:27bc] (rev 02)
+00:1f.2 SATA controller [0106]: Intel Corporation NM10/ICH7 Family SATA Controller [AHCI mode] [8086:27c1] (rev 02)
+00:1f.3 SMBus [0c05]: Intel Corporation NM10/ICH7 Family SMBus Controller [8086:27da] (rev 02)
+01:00.0 Ethernet controller [0200]: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller [10ec:8168] (rev 07)
+lsusb
+Bus 001 Device 005: ID 148f:7601 Ralink Technology, Corp. MT7601U Wireless Adapter
+Bus 001 Device 004: ID 0dd8:173c Netac Technology Co., Ltd Flash Drive
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 005 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+Bus 004 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+Bus 003 Device 002: ID 09da:9090 A4Tech Co., Ltd. XL-730K / XL-750BK / XL-755BK Mice
+Bus 003 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+Bus 002 Device 002: ID 046d:c31d Logitech, Inc. Media Keyboard K200
+Bus 002 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+sysbench --threads=4 --cpu-max-prime=10000 cpu run
+sysbench 1.0.18 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:   278.21
+
+General statistics:
+    total time:                          10.0078s
+    total number of events:              2785
+
+Latency (ms):
+         min:                                   11.81
+         avg:                                   14.37
+         max:                                   20.30
+         95th percentile:                       14.46
+         sum:                                40013.58
+
+Threads fairness:
+    events (avg/stddev):           696.2500/0.83
+    execution time (avg/stddev):   10.0034/0.00
+
+sysbench --threads=4 --cpu-max-prime=20000 cpu run
+sysbench 1.0.18 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Prime numbers limit: 20000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:   107.45
+
+General statistics:
+    total time:                          10.0299s
+    total number of events:              1078
+
+Latency (ms):
+         min:                                   29.85
+         avg:                                   37.18
+         max:                                   48.92
+         95th percentile:                       37.56
+         sum:                                40081.42
+
+Threads fairness:
+    events (avg/stddev):           269.5000/0.50
+    execution time (avg/stddev):   10.0204/0.01
+
+sysbench --threads=4 memory run
+sysbench 1.0.18 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Running memory speed test with the following options:
+  block size: 1KiB
+  total size: 102400MiB
+  operation: write
+  scope: global
+
+Initializing worker threads...
+
+Threads started!
+
+Total operations: 23594479 (2358737.65 per second)
+
+23041.48 MiB transferred (2303.45 MiB/sec)
+
+
+General statistics:
+    total time:                          10.0002s
+    total number of events:              23594479
+
+Latency (ms):
+         min:                                    0.00
+         avg:                                    0.00
+         max:                                    2.20
+         95th percentile:                        0.00
+         sum:                                24687.91
+
+Threads fairness:
+    events (avg/stddev):           5898619.7500/22812.74
+    execution time (avg/stddev):   6.1720/0.01
+
+make[1]: Leaving directory '/home/ubuntu/.common'

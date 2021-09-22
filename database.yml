@@ -18,3 +18,8 @@
   source: https://reddit.com/r/selfhosted/comments/idikkz
   cpu_prime10000: 1401.46
   mem: 3382.73
+
+- name: Atom D2550
+  cpu_prime10000: 278.21
+  cpu_prime20000: 107.45
+  mem: 2303.45
