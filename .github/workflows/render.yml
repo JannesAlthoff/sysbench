@@ -18,7 +18,7 @@ jobs:
           VENVDIR: ~/venv
 
       - name: unmask index.html
-        run: sed '/index.html/d' .gitignore
+        run: sed -i '/index.html/d' .gitignore
 
       - name: publish
         uses: peaceiris/actions-gh-pages@v3
