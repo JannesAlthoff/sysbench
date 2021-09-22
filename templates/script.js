@@ -75,9 +75,9 @@ function makeHandler(table, column, valueType) {
 (function () {
     var results = document.getElementById("results");
     var header = results.rows[0].children;
-    var valueType = null;
     for (var col = 0; col < header.length; col++) {
         var element = header[col];
+        var valueType = null;
         if (element.classList.contains("int")) {
             valueType = "int";
         }
