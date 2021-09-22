@@ -16,6 +16,10 @@ footer {
   max-width: 40em;
 }
 
+#results th {
+  user-select: none;
+}
+
 td.name {
   min-width: 10em;
   white-space: nowrap;
