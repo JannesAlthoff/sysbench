@@ -3,7 +3,7 @@
   <tr>
     {% for field_id, field in fields.items() %}
     {% if not field.nocolumn|default(False) %}
-    <th title="{{ field.description }}">
+    <th title="{{ field.description }}" class="{{ field.convert|default('') }}">
       {{ field.title }}
     </th>
     {% endif %}

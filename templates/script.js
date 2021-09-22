@@ -12,7 +12,7 @@ function sort_table(column_number, type) {
             should_switch = false;
             cur = rows[i].getElementsByTagName("td")[column_number];
             next = rows[i+1].getElementsByTagName("td")[column_number];
-            if (type == "number") {
+            if (type in ["number", "int"]) {
                 values = [parse_number(cur.innerText), parse_number(next.innerText)];
             } else {
                 values = [cur.innerText.toLowerCase(), next.innerText.toLowerCase()];
@@ -48,14 +48,19 @@ function parse_number(text) {
     }
 }
 
-function make_handler(column) {
-    return () => sort_table(column, "number");
+function make_handler(column, type) {
+    return () => sort_table(column, type);
 };
 
 (function () {
     var results = document.getElementById("results");
     var header = results.rows[0].children;
+    var type = null;
     for (var col = 0; col < header.length; col++) {
-        header[col].onclick = make_handler(col);
+        var element = header[col];
+        if ("int" in element.classList) {
+            type = "int";
+        }
+        header[col].onclick = make_handler(col, type);
     }
 })();
