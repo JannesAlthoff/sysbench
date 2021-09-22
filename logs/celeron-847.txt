@@ -1,0 +1,320 @@
+make[1]: Entering directory '/home/knoppix/.common'
+Sun 08 Aug 2021 03:48:45 PM EDT
+lscpu || cat /proc/cpuinfo
+Architecture:                    x86_64
+CPU op-mode(s):                  32-bit, 64-bit
+Byte Order:                      Little Endian
+Address sizes:                   36 bits physical, 48 bits virtual
+CPU(s):                          2
+On-line CPU(s) list:             0,1
+Thread(s) per core:              1
+Core(s) per socket:              2
+Socket(s):                       1
+Vendor ID:                       GenuineIntel
+CPU family:                      6
+Model:                           42
+Model name:                      Intel(R) Celeron(R) CPU 847 @ 1.10GHz
+Stepping:                        7
+CPU MHz:                         1097.576
+CPU max MHz:                     1100.0000
+CPU min MHz:                     800.0000
+BogoMIPS:                        2196.61
+L1d cache:                       64 KiB
+L1i cache:                       64 KiB
+L2 cache:                        512 KiB
+L3 cache:                        2 MiB
+Vulnerability Itlb multihit:     KVM: Mitigation: VMX unsupported
+Vulnerability L1tf:              Mitigation; PTE Inversion
+Vulnerability Mds:               Vulnerable: Clear CPU buffers attempted, no microcode; SMT disabled
+Vulnerability Meltdown:          Mitigation; PTI
+Vulnerability Spec store bypass: Vulnerable
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Full generic retpoline, STIBP disabled, RSB filling
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
+Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer xsave lahf_lm epb pti xsaveopt dtherm arat pln pts
+free -h || free -m
+              total        used        free      shared  buff/cache   available
+Mem:          1.6Gi       266Mi       379Mi        46Mi       969Mi       1.2Gi
+Swap:         1.2Gi        10Mi       1.2Gi
+lspci -nn
+00:00.0 Host bridge [0600]: Intel Corporation 2nd Generation Core Processor Family DRAM Controller [8086:0104] (rev 09)
+00:01.0 PCI bridge [0604]: Intel Corporation Xeon E3-1200/2nd Generation Core Processor Family PCI Express Root Port [8086:0101] (rev 09)
+00:02.0 VGA compatible controller [0300]: Intel Corporation 2nd Generation Core Processor Family Integrated Graphics Controller [8086:0106] (rev 09)
+00:14.0 USB controller [0c03]: Intel Corporation 7 Series/C210 Series Chipset Family USB xHCI Host Controller [8086:1e31] (rev 04)
+00:16.0 Communication controller [0780]: Intel Corporation 7 Series/C216 Chipset Family MEI Controller #1 [8086:1e3a] (rev 04)
+00:1a.0 USB controller [0c03]: Intel Corporation 7 Series/C216 Chipset Family USB Enhanced Host Controller #2 [8086:1e2d] (rev 04)
+00:1b.0 Audio device [0403]: Intel Corporation 7 Series/C216 Chipset Family High Definition Audio Controller [8086:1e20] (rev 04)
+00:1c.0 PCI bridge [0604]: Intel Corporation 7 Series/C216 Chipset Family PCI Express Root Port 1 [8086:1e10] (rev c4)
+00:1c.1 PCI bridge [0604]: Intel Corporation 7 Series/C210 Series Chipset Family PCI Express Root Port 2 [8086:1e12] (rev c4)
+00:1c.2 PCI bridge [0604]: Intel Corporation 7 Series/C210 Series Chipset Family PCI Express Root Port 3 [8086:1e14] (rev c4)
+00:1d.0 USB controller [0c03]: Intel Corporation 7 Series/C216 Chipset Family USB Enhanced Host Controller #1 [8086:1e26] (rev 04)
+00:1f.0 ISA bridge [0601]: Intel Corporation HM70 Express Chipset LPC Controller [8086:1e5e] (rev 04)
+00:1f.2 SATA controller [0106]: Intel Corporation 7 Series Chipset Family 6-port SATA Controller [AHCI mode] [8086:1e03] (rev 04)
+00:1f.3 SMBus [0c05]: Intel Corporation 7 Series/C216 Chipset Family SMBus Controller [8086:1e22] (rev 04)
+03:00.0 Ethernet controller [0200]: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller [10ec:8168] (rev 09)
+04:00.0 Network controller [0280]: Qualcomm Atheros AR9485 Wireless Network Adapter [168c:0032] (rev 01)
+lsusb
+sysbench --threads=4 --cpu-max-prime=10000 cpu run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:   388.49
+
+General statistics:
+    total time:                          10.0047s
+    total number of events:              3889
+
+Latency (ms):
+         min:                                    5.04
+         avg:                                   10.28
+         max:                                   68.50
+         95th percentile:                       18.28
+         sum:                                39962.98
+
+Threads fairness:
+    events (avg/stddev):           972.2500/15.16
+    execution time (avg/stddev):   9.9907/0.01
+
+sysbench --threads=4 --cpu-max-prime=20000 cpu run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Prime numbers limit: 20000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:   154.86
+
+General statistics:
+    total time:                          10.0150s
+    total number of events:              1552
+
+Latency (ms):
+         min:                                   12.79
+         avg:                                   25.77
+         max:                                   54.54
+         95th percentile:                       32.53
+         sum:                                39999.65
+
+Threads fairness:
+    events (avg/stddev):           388.0000/2.55
+    execution time (avg/stddev):   9.9999/0.01
+
+sysbench --threads=4 memory run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Running memory speed test with the following options:
+  block size: 1KiB
+  total size: 102400MiB
+  operation: write
+  scope: global
+
+Initializing worker threads...
+
+Threads started!
+
+Total operations: 15459601 (1544958.53 per second)
+
+15097.27 MiB transferred (1508.75 MiB/sec)
+
+
+General statistics:
+    total time:                          10.0002s
+    total number of events:              15459601
+
+Latency (ms):
+         min:                                    0.00
+         avg:                                    0.00
+         max:                                   23.35
+         95th percentile:                        0.00
+         sum:                                15583.68
+
+Threads fairness:
+    events (avg/stddev):           3864900.2500/21888.08
+    execution time (avg/stddev):   3.8959/0.13
+
+make[1]: Leaving directory '/home/knoppix/.common'
+make[1]: Entering directory '/home/knoppix/.common'
+Sun 08 Aug 2021 03:52:58 PM EDT
+lscpu || cat /proc/cpuinfo
+Architecture:                    x86_64
+CPU op-mode(s):                  32-bit, 64-bit
+Byte Order:                      Little Endian
+Address sizes:                   36 bits physical, 48 bits virtual
+CPU(s):                          2
+On-line CPU(s) list:             0,1
+Thread(s) per core:              1
+Core(s) per socket:              2
+Socket(s):                       1
+Vendor ID:                       GenuineIntel
+CPU family:                      6
+Model:                           42
+Model name:                      Intel(R) Celeron(R) CPU 847 @ 1.10GHz
+Stepping:                        7
+CPU MHz:                         983.935
+CPU max MHz:                     1100.0000
+CPU min MHz:                     800.0000
+BogoMIPS:                        2196.61
+L1d cache:                       64 KiB
+L1i cache:                       64 KiB
+L2 cache:                        512 KiB
+L3 cache:                        2 MiB
+Vulnerability Itlb multihit:     KVM: Mitigation: VMX unsupported
+Vulnerability L1tf:              Mitigation; PTE Inversion
+Vulnerability Mds:               Vulnerable: Clear CPU buffers attempted, no microcode; SMT disabled
+Vulnerability Meltdown:          Mitigation; PTI
+Vulnerability Spec store bypass: Vulnerable
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Full generic retpoline, STIBP disabled, RSB filling
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
+Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer xsave lahf_lm epb pti xsaveopt dtherm arat pln pts
+free -h || free -m
+              total        used        free      shared  buff/cache   available
+Mem:          1.6Gi       197Mi       411Mi        25Mi       1.0Gi       1.3Gi
+Swap:         1.2Gi       5.0Mi       1.2Gi
+lspci -nn
+00:00.0 Host bridge [0600]: Intel Corporation 2nd Generation Core Processor Family DRAM Controller [8086:0104] (rev 09)
+00:01.0 PCI bridge [0604]: Intel Corporation Xeon E3-1200/2nd Generation Core Processor Family PCI Express Root Port [8086:0101] (rev 09)
+00:02.0 VGA compatible controller [0300]: Intel Corporation 2nd Generation Core Processor Family Integrated Graphics Controller [8086:0106] (rev 09)
+00:14.0 USB controller [0c03]: Intel Corporation 7 Series/C210 Series Chipset Family USB xHCI Host Controller [8086:1e31] (rev 04)
+00:16.0 Communication controller [0780]: Intel Corporation 7 Series/C216 Chipset Family MEI Controller #1 [8086:1e3a] (rev 04)
+00:1a.0 USB controller [0c03]: Intel Corporation 7 Series/C216 Chipset Family USB Enhanced Host Controller #2 [8086:1e2d] (rev 04)
+00:1b.0 Audio device [0403]: Intel Corporation 7 Series/C216 Chipset Family High Definition Audio Controller [8086:1e20] (rev 04)
+00:1c.0 PCI bridge [0604]: Intel Corporation 7 Series/C216 Chipset Family PCI Express Root Port 1 [8086:1e10] (rev c4)
+00:1c.1 PCI bridge [0604]: Intel Corporation 7 Series/C210 Series Chipset Family PCI Express Root Port 2 [8086:1e12] (rev c4)
+00:1c.2 PCI bridge [0604]: Intel Corporation 7 Series/C210 Series Chipset Family PCI Express Root Port 3 [8086:1e14] (rev c4)
+00:1d.0 USB controller [0c03]: Intel Corporation 7 Series/C216 Chipset Family USB Enhanced Host Controller #1 [8086:1e26] (rev 04)
+00:1f.0 ISA bridge [0601]: Intel Corporation HM70 Express Chipset LPC Controller [8086:1e5e] (rev 04)
+00:1f.2 SATA controller [0106]: Intel Corporation 7 Series Chipset Family 6-port SATA Controller [AHCI mode] [8086:1e03] (rev 04)
+00:1f.3 SMBus [0c05]: Intel Corporation 7 Series/C216 Chipset Family SMBus Controller [8086:1e22] (rev 04)
+03:00.0 Ethernet controller [0200]: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller [10ec:8168] (rev 09)
+04:00.0 Network controller [0280]: Qualcomm Atheros AR9485 Wireless Network Adapter [168c:0032] (rev 01)
+lsusb
+sysbench --threads=4 --cpu-max-prime=10000 cpu run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:   394.41
+
+General statistics:
+    total time:                          10.0066s
+    total number of events:              3949
+
+Latency (ms):
+         min:                                    5.04
+         avg:                                   10.13
+         max:                                   31.74
+         95th percentile:                       12.75
+         sum:                                39986.20
+
+Threads fairness:
+    events (avg/stddev):           987.2500/5.63
+    execution time (avg/stddev):   9.9965/0.00
+
+sysbench --threads=4 --cpu-max-prime=20000 cpu run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Prime numbers limit: 20000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:   155.24
+
+General statistics:
+    total time:                          10.0165s
+    total number of events:              1556
+
+Latency (ms):
+         min:                                   12.79
+         avg:                                   25.72
+         max:                                   56.22
+         95th percentile:                       29.72
+         sum:                                40019.36
+
+Threads fairness:
+    events (avg/stddev):           389.0000/2.12
+    execution time (avg/stddev):   10.0048/0.01
+
+sysbench --threads=4 memory run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Running memory speed test with the following options:
+  block size: 1KiB
+  total size: 102400MiB
+  operation: write
+  scope: global
+
+Initializing worker threads...
+
+Threads started!
+
+Total operations: 15439848 (1542985.95 per second)
+
+15077.98 MiB transferred (1506.82 MiB/sec)
+
+
+General statistics:
+    total time:                          10.0002s
+    total number of events:              15439848
+
+Latency (ms):
+         min:                                    0.00
+         avg:                                    0.00
+         max:                                   19.55
+         95th percentile:                        0.00
+         sum:                                15830.35
+
+Threads fairness:
+    events (avg/stddev):           3859962.0000/46301.58
+    execution time (avg/stddev):   3.9576/0.08
+
+make[1]: Leaving directory '/home/knoppix/.common'

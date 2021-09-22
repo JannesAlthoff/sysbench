@@ -23,3 +23,8 @@
   cpu_prime10000: 278.21
   cpu_prime20000: 107.45
   mem: 2303.45
+
+- name: Celeron 847
+  cpu_prime10000: 388.49
+  cpu_prime20000: 154.86
+  mem: 1508.75
