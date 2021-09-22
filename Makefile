@@ -1,3 +1,22 @@
+SYSBENCH?=sysbench
+.PHONY: sysbench
+sysbench:
+	@$(SYSBENCH) --version  # Fail early if sysbench is not installed
+	@$(MAKE) .sysbench-run | tee --append $@
+
+
+.PHONY: .sysbench-run
+.sysbench-run:
+	@date
+	-lscpu || cat /proc/cpuinfo
+	-free -h || free -m
+	-lspci -nn
+	-lsusb
+	$(SYSBENCH) --threads=4 --cpu-max-prime=10000 cpu run
+	$(SYSBENCH) --threads=4 --cpu-max-prime=20000 cpu run
+	$(SYSBENCH) --threads=4 memory run
+
+
 build: venv
 	$(VENV)/python build.py
 
