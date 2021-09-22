@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sysbench Test Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <style>
+    
+  body {
+  margin: auto;
+  max-width: 50em;
+}
+
+header, footer {
+  margin: 1em auto;
+}
+
+footer {
+  text-align: right;
+}
+
+#results {
+  margin: auto;
+  max-width: 40em;
+}
+
+#results th {
+  user-select: none;
+}
+
+td.name {
+  min-width: 10em;
+  white-space: nowrap;
+}
+
+td.cpu_prime10000,
+td.cpu_prime20000,
+td.mem {
+  text-align: right;
+  padding-right: 5%;
+}
+
+th.asc,
+th.desc {
+  position: relative;
+}
+th.asc:after,
+th.desc:after {
+  content: " ";
+  position: absolute;
+  right: 10%;
+  top: 43%;
+  display: block;
+  width: 0;
+  height: 0;
+  border: solid 5px transparent;
+  margin: 4px 4px 0 3px;
+  background: transparent;
+}
+th.asc:after {
+  border-bottom: solid 7px gray;
+  border-top-width: 0;
+}
+th.desc:after {
+  border-top: solid 7px gray;
+  border-bottom-width: 0;
+}
+
+    </style>
+  </head>
+  <body>
+    
+  <header>
+  <h1>Sysbench Test Results</h1>
+</header>
+
+    
+  <table id="results" class="table table-hover table-striped">
+  <!-- Column header -->
+  <tr>
+    
+    
+    <th title="Short name of tested machine" class="">
+      Machine
+    </th>
+    
+    
+    
+    
+    
+    
+    
+    <th title="--threads=4 --cpu-max-prime=10000 cpu run" class="int">
+      CPU prime 10000, events/sec
+    </th>
+    
+    
+    
+    <th title="--threads=4 --cpu-max-prime=20000 cpu run" class="int">
+      CPU prime 20000, events/sec
+    </th>
+    
+    
+    
+    <th title="--threads=4 memory run" class="int">
+      Memory, MiB/sec
+    </th>
+    
+    
+  </tr>
+  <!-- Data rows -->
+  
+  <tr>
+    
+    
+    <td class="name" title="Virtual machine with support for nested virtualization">
+      
+      Azure E4ds_v4
+      
+    </td>
+    
+    
+    
+    
+    
+    
+    
+    <td class="cpu_prime10000" title="Virtual machine with support for nested virtualization">
+      
+      3710
+      
+    </td>
+    
+    
+    
+    <td class="cpu_prime20000" title="Virtual machine with support for nested virtualization">
+      
+      1447
+      
+    </td>
+    
+    
+    
+    <td class="mem" title="Virtual machine with support for nested virtualization">
+      
+      10418
+      
+    </td>
+    
+    
+  </tr>
+  
+  <tr>
+    
+    
+    <td class="name" title="">
+      
+      <a href="https://reddit.com/r/selfhosted/comments/idikkz">Raspberry Pi 4</a>
+      
+    </td>
+    
+    
+    
+    
+    
+    
+    
+    <td class="cpu_prime10000" title="">
+      
+      429
+      
+    </td>
+    
+    
+    
+    <td class="cpu_prime20000" title="">
+      
+      
+      
+    </td>
+    
+    
+    
+    <td class="mem" title="">
+      
+      1118
+      
+    </td>
+    
+    
+  </tr>
+  
+  <tr>
+    
+    
+    <td class="name" title="">
+      
+      <a href="https://reddit.com/r/selfhosted/comments/idikkz">Atom x5-z8300</a>
+      
+    </td>
+    
+    
+    
+    
+    
+    
+    
+    <td class="cpu_prime10000" title="">
+      
+      1401
+      
+    </td>
+    
+    
+    
+    <td class="cpu_prime20000" title="">
+      
+      
+      
+    </td>
+    
+    
+    
+    <td class="mem" title="">
+      
+      3382
+      
+    </td>
+    
+    
+  </tr>
+  
+</table>
+
+    
+  <footer>
+  <a href="https://github.com/sio/sysbench">https://github.com/sio/sysbench</a>
+</footer>
+
+    <script>
+      
+  function sortTable(table, columnNumber, valueType) {
+    // https://www.w3schools.com/howto/howto_js_sort_table.asp
+    var rows, switching, i, cur, next, shouldSwitch, direction, switchCount = 0;
+    var values
+    switching = true;
+    direction = "desc";
+    while (switching) {
+        switching = false;
+        rows = table.rows;
+        for (i=1; i<(rows.length-1); i++) {
+            shouldSwitch = false;
+            cur = rows[i].getElementsByTagName("td")[columnNumber];
+            next = rows[i+1].getElementsByTagName("td")[columnNumber];
+            if (["number", "int"].includes(valueType)) {
+                values = [parseNumber(cur.innerText), parseNumber(next.innerText)];
+            } else {
+                values = [cur.innerText.toLowerCase(), next.innerText.toLowerCase()];
+            }
+            if (values[0] == values[1]) {
+                continue;
+            }
+            compare = (values[0] > values[1]);
+            shouldSwitch = (compare) == (direction == "asc"); // logical xor
+            if (shouldSwitch) {
+                break;
+            }
+        }
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i+1], rows[i]);
+            switching = true;
+            switchCount++;
+        } else {
+            if (switchCount == 0 && direction == "desc") {
+                direction = "asc";
+                switching = true;
+            }
+        }
+    }
+    return direction;
+}
+
+function parseNumber(text) {
+    var num = Number(text);
+    if (isNaN(num)) {
+        return 0;
+    } else {
+        return num;
+    }
+}
+
+function makeHandler(table, column, valueType) {
+    var header = table.rows[0].children;
+    return (e) => {
+        // clear previous sort status
+        var variants = ["asc", "desc"];
+        for (var col = 0; col < header.length; col++) {
+            var cell = header[col];
+            for (var cls = 0; cls < cell.classList.length; cls++) {
+                var className = cell.classList[cls];
+                if (variants.includes(className)) {
+                    cell.classList.remove(className);
+                }
+            }
+        }
+
+        // sort
+        var direction = sortTable(table, column, valueType);
+
+        // show current sort status
+        console.log("Sort " + direction + ": " + header[column].innerText + " (" + valueType + ")");
+        e.target.classList.add(direction);
+    }
+};
+
+(function () {
+    var results = document.getElementById("results");
+    var header = results.rows[0].children;
+    for (var col = 0; col < header.length; col++) {
+        var element = header[col];
+        var valueType = null;
+        if (element.classList.contains("int")) {
+            valueType = "int";
+        }
+        header[col].onclick = makeHandler(results, col, valueType);
+    }
+    header[1].click()
+})();
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+body {
+  margin: auto;
+  max-width: 50em;
+}
+
+header, footer {
+  margin: 1em auto;
+}
+
+footer {
+  text-align: right;
+}
+
+#results {
+  margin: auto;
+  max-width: 40em;
+}
+
+#results th {
+  user-select: none;
+}
+
+td.name {
+  min-width: 10em;
+  white-space: nowrap;
+}
+
+td.cpu_prime10000,
+td.cpu_prime20000,
+td.mem {
+  text-align: right;
+  padding-right: 5%;
+}
+
+th.asc,
+th.desc {
+  position: relative;
+}
+th.asc:after,
+th.desc:after {
+  content: " ";
+  position: absolute;
+  right: 10%;
+  top: 43%;
+  display: block;
+  width: 0;
+  height: 0;
+  border: solid 5px transparent;
+  margin: 4px 4px 0 3px;
+  background: transparent;
+}
+th.asc:after {
+  border-bottom: solid 7px gray;
+  border-top-width: 0;
+}
+th.desc:after {
+  border-top: solid 7px gray;
+  border-bottom-width: 0;
+}

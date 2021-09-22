@@ -1,0 +1,20 @@
+#
+# Sysbench test results saved as YAML list of dicts
+#
+---
+
+- name: Azure E4ds_v4
+  description: Virtual machine with support for nested virtualization
+  cpu_prime10000: 3710.00 # events per second, 4 threads
+  cpu_prime20000: 1447.48 # events per second, 4 threads
+  mem: 10418.27           # MiB/sec, 4 threads
+
+- name: Raspberry Pi 4
+  source: https://reddit.com/r/selfhosted/comments/idikkz
+  cpu_prime10000: 429.40
+  mem: 1118.57
+
+- name: Atom x5-z8300
+  source: https://reddit.com/r/selfhosted/comments/idikkz
+  cpu_prime10000: 1401.46
+  mem: 3382.73
