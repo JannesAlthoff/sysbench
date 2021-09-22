@@ -43,3 +43,8 @@
   cpu_prime10000: 1567
   cpu_prime20000: 613
   mem: 2783
+
+- name: Core 2 Duo SU7300
+  cpu_prime10000: 1311.71
+  cpu_prime20000: 518.0
+  mem: 319.23
