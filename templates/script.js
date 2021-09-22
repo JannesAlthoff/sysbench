@@ -1,6 +1,6 @@
-function sort_table(column_number, type) {
+function sortTable(columnNumber, type) {
     // https://www.w3schools.com/howto/howto_js_sort_table.asp
-    var table, rows, switching, i, cur, next, should_switch, direction, switch_count = 0;
+    var table, rows, switching, i, cur, next, shouldSwitch, direction, switchCount = 0;
     var values
     table = document.getElementById("results");
     switching = true;
@@ -9,11 +9,11 @@ function sort_table(column_number, type) {
         switching = false;
         rows = table.rows;
         for (i=1; i<(rows.length-1); i++) {
-            should_switch = false;
-            cur = rows[i].getElementsByTagName("td")[column_number];
-            next = rows[i+1].getElementsByTagName("td")[column_number];
+            shouldSwitch = false;
+            cur = rows[i].getElementsByTagName("td")[columnNumber];
+            next = rows[i+1].getElementsByTagName("td")[columnNumber];
             if (type in ["number", "int"]) {
-                values = [parse_number(cur.innerText), parse_number(next.innerText)];
+                values = [parseNumber(cur.innerText), parseNumber(next.innerText)];
             } else {
                 values = [cur.innerText.toLowerCase(), next.innerText.toLowerCase()];
             }
@@ -21,17 +21,17 @@ function sort_table(column_number, type) {
                 continue;
             }
             compare = (values[0] > values[1]);
-            should_switch = (compare) == (direction == "asc"); // logical xor
-            if (should_switch) {
+            shouldSwitch = (compare) == (direction == "asc"); // logical xor
+            if (shouldSwitch) {
                 break;
             }
         }
-        if (should_switch) {
+        if (shouldSwitch) {
             rows[i].parentNode.insertBefore(rows[i+1], rows[i]);
             switching = true;
-            switch_count++;
+            switchCount++;
         } else {
-            if (switch_count == 0 && direction == "asc") {
+            if (switchCount == 0 && direction == "asc") {
                 direction = "desc";
                 switching = true;
             }
@@ -40,7 +40,7 @@ function sort_table(column_number, type) {
     return direction;
 }
 
-function parse_number(text) {
+function parseNumber(text) {
     var num = Number(text);
     if (isNaN(num)) {
         return 0;
@@ -49,7 +49,7 @@ function parse_number(text) {
     }
 }
 
-function make_handler(column, type, header) {
+function makeHandler(column, type, header) {
     return (e) => {
         // clear previous sort status
         var variants = ["asc", "desc"];
@@ -64,7 +64,7 @@ function make_handler(column, type, header) {
         }
 
         // sort
-        var direction = sort_table(column, type);
+        var direction = sortTable(column, type);
 
         // show current sort status
         e.target.classList.add(direction);
@@ -80,6 +80,6 @@ function make_handler(column, type, header) {
         if ("int" in element.classList) {
             type = "int";
         }
-        header[col].onclick = make_handler(col, type, header);
+        header[col].onclick = makeHandler(col, type, header);
     }
 })();
