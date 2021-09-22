@@ -32,10 +32,28 @@ td.mem {
   padding-right: 5%;
 }
 
-th.asc {
-  background-color: red;
-}
-
+th.asc,
 th.desc {
-  background-color: blue;
+  position: relative;
+}
+th.asc:after,
+th.desc:after {
+  content: " ";
+  position: absolute;
+  right: 10%;
+  top: 43%;
+  display: block;
+  width: 0;
+  height: 0;
+  border: solid 5px transparent;
+  margin: 4px 4px 0 3px;
+  background: transparent;
+}
+th.asc:after {
+  border-bottom: solid 7px gray;
+  border-top-width: 0;
+}
+th.desc:after {
+  border-top: solid 7px gray;
+  border-bottom-width: 0;
 }

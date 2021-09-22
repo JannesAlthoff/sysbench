@@ -67,6 +67,7 @@ function makeHandler(table, column, valueType) {
         var direction = sortTable(table, column, valueType);
 
         // show current sort status
+        console.log("Sort " + direction + ": " + header[column].innerText + " (" + valueType + ")");
         e.target.classList.add(direction);
     }
 };
@@ -77,7 +78,7 @@ function makeHandler(table, column, valueType) {
     var valueType = null;
     for (var col = 0; col < header.length; col++) {
         var element = header[col];
-        if ("int" in element.classList) {
+        if (element.classList.contains("int")) {
             valueType = "int";
         }
         header[col].onclick = makeHandler(results, col, valueType);
