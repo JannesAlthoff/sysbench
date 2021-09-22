@@ -1,0 +1,25 @@
+name: render
+
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  html-render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: build
+        run: make build
+        env:
+          VENVDIR: ~/venv
+
+      - name: publish
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/master' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
