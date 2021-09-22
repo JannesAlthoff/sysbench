@@ -18,3 +18,28 @@
   source: https://reddit.com/r/selfhosted/comments/idikkz
   cpu_prime10000: 1401.46
   mem: 3382.73
+
+- name: Atom D2550
+  cpu_prime10000: 278.21
+  cpu_prime20000: 107.45
+  mem: 2303.45
+
+- name: Celeron 847
+  cpu_prime10000: 388.49
+  cpu_prime20000: 154.86
+  mem: 1508.75
+
+- name: Pentium J5005
+  cpu_prime10000: 6447
+  cpu_prime20000: 2462
+  mem: 8303
+
+- name: Xeon E3 1225 v2
+  cpu_prime10000: 4321
+  cpu_prime20000: 1680
+  mem: 11853
+
+- name: AMD GX-217GA
+  cpu_prime10000: 1567
+  cpu_prime20000: 613
+  mem: 2783
