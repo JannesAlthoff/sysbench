@@ -27,3 +27,11 @@ td.mem {
   text-align: right;
   padding-right: 5%;
 }
+
+th.asc {
+  background-color: red;
+}
+
+th.desc {
+  background-color: blue;
+}

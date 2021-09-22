@@ -37,6 +37,7 @@ function sort_table(column_number, type) {
             }
         }
     }
+    return direction;
 }
 
 function parse_number(text) {
@@ -48,8 +49,26 @@ function parse_number(text) {
     }
 }
 
-function make_handler(column, type) {
-    return () => sort_table(column, type);
+function make_handler(column, type, header) {
+    return (e) => {
+        // clear previous sort status
+        var variants = ["asc", "desc"];
+        for (var col = 0; col < header.length; col++) {
+            var cell = header[col];
+            for (var cls = 0; cls < cell.classList.length; cls++) {
+                var className = cell.classList[cls];
+                if (variants.includes(className)) {
+                    cell.classList.remove(className);
+                }
+            }
+        }
+
+        // sort
+        var direction = sort_table(column, type);
+
+        // show current sort status
+        e.target.classList.add(direction);
+    }
 };
 
 (function () {
@@ -61,6 +80,6 @@ function make_handler(column, type) {
         if ("int" in element.classList) {
             type = "int";
         }
-        header[col].onclick = make_handler(col, type);
+        header[col].onclick = make_handler(col, type, header);
     }
 })();
