@@ -3,7 +3,7 @@ function sortTable(table, columnNumber, valueType) {
     var rows, switching, i, cur, next, shouldSwitch, direction, switchCount = 0;
     var values
     switching = true;
-    direction = "asc";
+    direction = "desc";
     while (switching) {
         switching = false;
         rows = table.rows;
@@ -30,8 +30,8 @@ function sortTable(table, columnNumber, valueType) {
             switching = true;
             switchCount++;
         } else {
-            if (switchCount == 0 && direction == "asc") {
-                direction = "desc";
+            if (switchCount == 0 && direction == "desc") {
+                direction = "asc";
                 switching = true;
             }
         }
