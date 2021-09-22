@@ -1,1 +1,0 @@
-# Sysbench results database
