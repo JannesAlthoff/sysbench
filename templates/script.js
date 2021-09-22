@@ -1,8 +1,7 @@
-function sortTable(columnNumber, type) {
+function sortTable(table, columnNumber, valueType) {
     // https://www.w3schools.com/howto/howto_js_sort_table.asp
-    var table, rows, switching, i, cur, next, shouldSwitch, direction, switchCount = 0;
+    var rows, switching, i, cur, next, shouldSwitch, direction, switchCount = 0;
     var values
-    table = document.getElementById("results");
     switching = true;
     direction = "asc";
     while (switching) {
@@ -12,7 +11,7 @@ function sortTable(columnNumber, type) {
             shouldSwitch = false;
             cur = rows[i].getElementsByTagName("td")[columnNumber];
             next = rows[i+1].getElementsByTagName("td")[columnNumber];
-            if (type in ["number", "int"]) {
+            if (["number", "int"].includes(valueType)) {
                 values = [parseNumber(cur.innerText), parseNumber(next.innerText)];
             } else {
                 values = [cur.innerText.toLowerCase(), next.innerText.toLowerCase()];
@@ -49,7 +48,8 @@ function parseNumber(text) {
     }
 }
 
-function makeHandler(column, type, header) {
+function makeHandler(table, column, valueType) {
+    var header = table.rows[0].children;
     return (e) => {
         // clear previous sort status
         var variants = ["asc", "desc"];
@@ -64,7 +64,7 @@ function makeHandler(column, type, header) {
         }
 
         // sort
-        var direction = sortTable(column, type);
+        var direction = sortTable(table, column, valueType);
 
         // show current sort status
         e.target.classList.add(direction);
@@ -74,12 +74,12 @@ function makeHandler(column, type, header) {
 (function () {
     var results = document.getElementById("results");
     var header = results.rows[0].children;
-    var type = null;
+    var valueType = null;
     for (var col = 0; col < header.length; col++) {
         var element = header[col];
         if ("int" in element.classList) {
-            type = "int";
+            valueType = "int";
         }
-        header[col].onclick = makeHandler(col, type, header);
+        header[col].onclick = makeHandler(results, col, valueType);
     }
 })();
