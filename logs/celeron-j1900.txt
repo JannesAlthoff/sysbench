@@ -1,0 +1,318 @@
+make[1]: Entering directory '/home/knoppix/sysbench'
+Sat 02 Oct 2021 11:28:20 PM EDT
+lscpu || cat /proc/cpuinfo
+Architecture:                    x86_64
+CPU op-mode(s):                  32-bit, 64-bit
+Byte Order:                      Little Endian
+Address sizes:                   36 bits physical, 48 bits virtual
+CPU(s):                          4
+On-line CPU(s) list:             0-3
+Thread(s) per core:              1
+Core(s) per socket:              4
+Socket(s):                       1
+Vendor ID:                       GenuineIntel
+CPU family:                      6
+Model:                           55
+Model name:                      Intel(R) Celeron(R) CPU  J1900  @ 1.99GHz
+Stepping:                        8
+CPU MHz:                         1441.913
+CPU max MHz:                     2415.7000
+CPU min MHz:                     1332.8000
+BogoMIPS:                        4001.66
+Virtualization:                  VT-x
+L1d cache:                       96 KiB
+L1i cache:                       128 KiB
+L2 cache:                        2 MiB
+Vulnerability Itlb multihit:     Not affected
+Vulnerability L1tf:              Not affected
+Vulnerability Mds:               Vulnerable: Clear CPU buffers attempted, no microcode; SMT disabled
+Vulnerability Meltdown:          Mitigation; PTI
+Vulnerability Spec store bypass: Not affected
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Full generic retpoline, STIBP disabled, RSB filling
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
+Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology tsc_reliable nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm sse4_1 sse4_2 movbe popcnt tsc_deadline_timer rdrand lahf_lm 3dnowprefetch epb pti tpr_shadow vnmi flexpriority ept vpid tsc_adjust smep erms dtherm ida arat
+free -h || free -m
+              total        used        free      shared  buff/cache   available
+Mem:          3.7Gi       376Mi       2.7Gi        88Mi       733Mi       3.2Gi
+Swap:         2.8Gi          0B       2.8Gi
+lspci -nn
+00:00.0 Host bridge [0600]: Intel Corporation Atom Processor Z36xxx/Z37xxx Series SoC Transaction Register [8086:0f00] (rev 0e)
+00:02.0 VGA compatible controller [0300]: Intel Corporation Atom Processor Z36xxx/Z37xxx Series Graphics & Display [8086:0f31] (rev 0e)
+00:13.0 SATA controller [0106]: Intel Corporation Atom Processor E3800 Series SATA AHCI Controller [8086:0f23] (rev 0e)
+00:14.0 USB controller [0c03]: Intel Corporation Atom Processor Z36xxx/Z37xxx, Celeron N2000 Series USB xHCI [8086:0f35] (rev 0e)
+00:1a.0 Encryption controller [1080]: Intel Corporation Atom Processor Z36xxx/Z37xxx Series Trusted Execution Engine [8086:0f18] (rev 0e)
+00:1b.0 Audio device [0403]: Intel Corporation Atom Processor Z36xxx/Z37xxx Series High Definition Audio Controller [8086:0f04] (rev 0e)
+00:1c.0 PCI bridge [0604]: Intel Corporation Atom Processor E3800 Series PCI Express Root Port 1 [8086:0f48] (rev 0e)
+00:1c.1 PCI bridge [0604]: Intel Corporation Atom Processor E3800 Series PCI Express Root Port 2 [8086:0f4a] (rev 0e)
+00:1c.2 PCI bridge [0604]: Intel Corporation Atom Processor E3800 Series PCI Express Root Port 3 [8086:0f4c] (rev 0e)
+00:1c.3 PCI bridge [0604]: Intel Corporation Atom Processor E3800 Series PCI Express Root Port 4 [8086:0f4e] (rev 0e)
+00:1f.0 ISA bridge [0601]: Intel Corporation Atom Processor Z36xxx/Z37xxx Series Power Control Unit [8086:0f1c] (rev 0e)
+00:1f.3 SMBus [0c05]: Intel Corporation Atom Processor E3800 Series SMBus Controller [8086:0f12] (rev 0e)
+01:00.0 Ethernet controller [0200]: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller [10ec:8168] (rev 06)
+02:00.0 Ethernet controller [0200]: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller [10ec:8168] (rev 06)
+03:00.0 PCI bridge [0604]: Intel Corporation 82801 PCI Bridge [8086:244e] (rev 41)
+lsusb
+sysbench --threads=4 --cpu-max-prime=10000 cpu run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:  1171.24
+
+General statistics:
+    total time:                          10.0025s
+    total number of events:              11719
+
+Latency (ms):
+         min:                                    3.41
+         avg:                                    3.41
+         max:                                   19.77
+         95th percentile:                        3.43
+         sum:                                39991.72
+
+Threads fairness:
+    events (avg/stddev):           2929.7500/2.49
+    execution time (avg/stddev):   9.9979/0.00
+
+sysbench --threads=4 --cpu-max-prime=20000 cpu run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Prime numbers limit: 20000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:   459.11
+
+General statistics:
+    total time:                          10.0076s
+    total number of events:              4596
+
+Latency (ms):
+         min:                                    8.69
+         avg:                                    8.70
+         max:                                   15.12
+         95th percentile:                        8.74
+         sum:                                40004.20
+
+Threads fairness:
+    events (avg/stddev):           1149.0000/0.71
+    execution time (avg/stddev):   10.0011/0.00
+
+sysbench --threads=4 memory run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Running memory speed test with the following options:
+  block size: 1KiB
+  total size: 102400MiB
+  operation: write
+  scope: global
+
+Initializing worker threads...
+
+Threads started!
+
+Total operations: 35571181 (3555878.79 per second)
+
+34737.48 MiB transferred (3472.54 MiB/sec)
+
+
+General statistics:
+    total time:                          10.0001s
+    total number of events:              35571181
+
+Latency (ms):
+         min:                                    0.00
+         avg:                                    0.00
+         max:                                    3.13
+         95th percentile:                        0.00
+         sum:                                17704.21
+
+Threads fairness:
+    events (avg/stddev):           8892795.2500/21650.92
+    execution time (avg/stddev):   4.4261/0.02
+
+make[1]: Leaving directory '/home/knoppix/sysbench'
+make[1]: Entering directory '/home/knoppix/sysbench'
+Sat 02 Oct 2021 11:28:56 PM EDT
+lscpu || cat /proc/cpuinfo
+Architecture:                    x86_64
+CPU op-mode(s):                  32-bit, 64-bit
+Byte Order:                      Little Endian
+Address sizes:                   36 bits physical, 48 bits virtual
+CPU(s):                          4
+On-line CPU(s) list:             0-3
+Thread(s) per core:              1
+Core(s) per socket:              4
+Socket(s):                       1
+Vendor ID:                       GenuineIntel
+CPU family:                      6
+Model:                           55
+Model name:                      Intel(R) Celeron(R) CPU  J1900  @ 1.99GHz
+Stepping:                        8
+CPU MHz:                         1471.729
+CPU max MHz:                     2415.7000
+CPU min MHz:                     1332.8000
+BogoMIPS:                        4001.66
+Virtualization:                  VT-x
+L1d cache:                       96 KiB
+L1i cache:                       128 KiB
+L2 cache:                        2 MiB
+Vulnerability Itlb multihit:     Not affected
+Vulnerability L1tf:              Not affected
+Vulnerability Mds:               Vulnerable: Clear CPU buffers attempted, no microcode; SMT disabled
+Vulnerability Meltdown:          Mitigation; PTI
+Vulnerability Spec store bypass: Not affected
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Full generic retpoline, STIBP disabled, RSB filling
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
+Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology tsc_reliable nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm sse4_1 sse4_2 movbe popcnt tsc_deadline_timer rdrand lahf_lm 3dnowprefetch epb pti tpr_shadow vnmi flexpriority ept vpid tsc_adjust smep erms dtherm ida arat
+free -h || free -m
+              total        used        free      shared  buff/cache   available
+Mem:          3.7Gi       235Mi       2.9Gi        32Mi       676Mi       3.4Gi
+Swap:         2.8Gi          0B       2.8Gi
+lspci -nn
+00:00.0 Host bridge [0600]: Intel Corporation Atom Processor Z36xxx/Z37xxx Series SoC Transaction Register [8086:0f00] (rev 0e)
+00:02.0 VGA compatible controller [0300]: Intel Corporation Atom Processor Z36xxx/Z37xxx Series Graphics & Display [8086:0f31] (rev 0e)
+00:13.0 SATA controller [0106]: Intel Corporation Atom Processor E3800 Series SATA AHCI Controller [8086:0f23] (rev 0e)
+00:14.0 USB controller [0c03]: Intel Corporation Atom Processor Z36xxx/Z37xxx, Celeron N2000 Series USB xHCI [8086:0f35] (rev 0e)
+00:1a.0 Encryption controller [1080]: Intel Corporation Atom Processor Z36xxx/Z37xxx Series Trusted Execution Engine [8086:0f18] (rev 0e)
+00:1b.0 Audio device [0403]: Intel Corporation Atom Processor Z36xxx/Z37xxx Series High Definition Audio Controller [8086:0f04] (rev 0e)
+00:1c.0 PCI bridge [0604]: Intel Corporation Atom Processor E3800 Series PCI Express Root Port 1 [8086:0f48] (rev 0e)
+00:1c.1 PCI bridge [0604]: Intel Corporation Atom Processor E3800 Series PCI Express Root Port 2 [8086:0f4a] (rev 0e)
+00:1c.2 PCI bridge [0604]: Intel Corporation Atom Processor E3800 Series PCI Express Root Port 3 [8086:0f4c] (rev 0e)
+00:1c.3 PCI bridge [0604]: Intel Corporation Atom Processor E3800 Series PCI Express Root Port 4 [8086:0f4e] (rev 0e)
+00:1f.0 ISA bridge [0601]: Intel Corporation Atom Processor Z36xxx/Z37xxx Series Power Control Unit [8086:0f1c] (rev 0e)
+00:1f.3 SMBus [0c05]: Intel Corporation Atom Processor E3800 Series SMBus Controller [8086:0f12] (rev 0e)
+01:00.0 Ethernet controller [0200]: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller [10ec:8168] (rev 06)
+02:00.0 Ethernet controller [0200]: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller [10ec:8168] (rev 06)
+03:00.0 PCI bridge [0604]: Intel Corporation 82801 PCI Bridge [8086:244e] (rev 41)
+lsusb
+sysbench --threads=4 --cpu-max-prime=10000 cpu run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:  1172.03
+
+General statistics:
+    total time:                          10.0026s
+    total number of events:              11727
+
+Latency (ms):
+         min:                                    3.41
+         avg:                                    3.41
+         max:                                    6.85
+         95th percentile:                        3.43
+         sum:                                39994.33
+
+Threads fairness:
+    events (avg/stddev):           2931.7500/2.49
+    execution time (avg/stddev):   9.9986/0.00
+
+sysbench --threads=4 --cpu-max-prime=20000 cpu run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Prime numbers limit: 20000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:   459.35
+
+General statistics:
+    total time:                          10.0066s
+    total number of events:              4598
+
+Latency (ms):
+         min:                                    8.69
+         avg:                                    8.70
+         max:                                   13.07
+         95th percentile:                        8.74
+         sum:                                40013.21
+
+Threads fairness:
+    events (avg/stddev):           1149.5000/0.87
+    execution time (avg/stddev):   10.0033/0.00
+
+sysbench --threads=4 memory run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Running memory speed test with the following options:
+  block size: 1KiB
+  total size: 102400MiB
+  operation: write
+  scope: global
+
+Initializing worker threads...
+
+Threads started!
+
+Total operations: 35683489 (3567123.37 per second)
+
+34847.16 MiB transferred (3483.52 MiB/sec)
+
+
+General statistics:
+    total time:                          10.0001s
+    total number of events:              35683489
+
+Latency (ms):
+         min:                                    0.00
+         avg:                                    0.00
+         max:                                    3.24
+         95th percentile:                        0.00
+         sum:                                17767.40
+
+Threads fairness:
+    events (avg/stddev):           8920872.2500/9470.00
+    execution time (avg/stddev):   4.4419/0.00
+
+make[1]: Leaving directory '/home/knoppix/sysbench'
