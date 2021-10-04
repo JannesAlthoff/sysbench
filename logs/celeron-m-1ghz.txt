@@ -1,0 +1,310 @@
+make[1]: Entering directory '/home/knoppix/sysbench'
+Sun 03 Oct 2021 01:55:43 PM EDT
+lscpu || cat /proc/cpuinfo
+Architecture:                    i686
+CPU op-mode(s):                  32-bit
+Byte Order:                      Little Endian
+Address sizes:                   32 bits physical, 32 bits virtual
+CPU(s):                          1
+On-line CPU(s) list:             0
+Thread(s) per core:              1
+Core(s) per socket:              1
+Socket(s):                       1
+Vendor ID:                       GenuineIntel
+CPU family:                      6
+Model:                           13
+Model name:                      Intel(R) Celeron(R) M processor         1.00GHz
+Stepping:                        8
+CPU MHz:                         997.500
+BogoMIPS:                        1995.12
+Vulnerability Itlb multihit:     KVM: Mitigation: VMX unsupported
+Vulnerability L1tf:              Vulnerable
+Vulnerability Mds:               Vulnerable: Clear CPU buffers attempted, no microcode; SMT disabled
+Vulnerability Meltdown:          Vulnerable
+Vulnerability Spec store bypass: Vulnerable
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Full generic retpoline, STIBP disabled, RSB filling
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
+Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov clflush dts acpi mmx fxsr sse sse2 ss tm pbe nx bts cpuid
+free -h || free -m
+              total        used        free      shared  buff/cache   available
+Mem:          482Mi       114Mi        32Mi        48Mi       335Mi       306Mi
+Swap:         362Mi          0B       362Mi
+lspci -nn
+00:00.0 Host bridge [0600]: Intel Corporation Mobile 915GM/PM/GMS/910GML Express Processor to DRAM Controller [8086:2590] (rev 04)
+00:02.0 VGA compatible controller [0300]: Intel Corporation Mobile 915GM/GMS/910GML Express Graphics Controller [8086:2592] (rev 04)
+00:02.1 Display controller [0380]: Intel Corporation Mobile 915GM/GMS/910GML Express Graphics Controller [8086:2792] (rev 04)
+00:1b.0 Audio device [0403]: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) High Definition Audio Controller [8086:2668] (rev 04)
+00:1c.0 PCI bridge [0604]: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) PCI Express Port 1 [8086:2660] (rev 04)
+00:1d.0 USB controller [0c03]: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) USB UHCI #1 [8086:2658] (rev 04)
+00:1d.1 USB controller [0c03]: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) USB UHCI #2 [8086:2659] (rev 04)
+00:1d.2 USB controller [0c03]: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) USB UHCI #3 [8086:265a] (rev 04)
+00:1d.3 USB controller [0c03]: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) USB UHCI #4 [8086:265b] (rev 04)
+00:1d.7 USB controller [0c03]: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) USB2 EHCI Controller [8086:265c] (rev 04)
+00:1e.0 PCI bridge [0604]: Intel Corporation 82801 Mobile PCI Bridge [8086:2448] (rev d4)
+00:1f.0 ISA bridge [0601]: Intel Corporation 82801FBM (ICH6M) LPC Interface Bridge [8086:2641] (rev 04)
+00:1f.1 IDE interface [0101]: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) IDE Controller [8086:266f] (rev 04)
+00:1f.3 SMBus [0c05]: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) SMBus Controller [8086:266a] (rev 04)
+01:00.0 Ethernet controller [0200]: Broadcom Inc. and subsidiaries NetLink BCM5906M Fast Ethernet PCI Express [14e4:1713] (rev 02)
+02:02.0 System peripheral [0880]: IBM Device [1014:0295] (rev 10)
+02:02.1 Serial controller [0700]: IBM Device [1014:0297] (rev 10)
+lsusb
+sysbench --threads=4 --cpu-max-prime=10000 cpu run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:   182.60
+
+General statistics:
+    total time:                          10.0070s
+    total number of events:              1829
+
+Latency (ms):
+         min:                                   10.16
+         avg:                                   21.86
+         max:                                   38.85
+         95th percentile:                       25.28
+         sum:                                39988.67
+
+Threads fairness:
+    events (avg/stddev):           457.2500/0.43
+    execution time (avg/stddev):   9.9972/0.00
+
+sysbench --threads=4 --cpu-max-prime=20000 cpu run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Prime numbers limit: 20000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:    73.49
+
+General statistics:
+    total time:                          10.0195s
+    total number of events:              737
+
+Latency (ms):
+         min:                                   20.29
+         avg:                                   54.27
+         max:                                   70.90
+         95th percentile:                       63.32
+         sum:                                39998.06
+
+Threads fairness:
+    events (avg/stddev):           184.2500/0.43
+    execution time (avg/stddev):   9.9995/0.00
+
+sysbench --threads=4 memory run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Running memory speed test with the following options:
+  block size: 1KiB
+  total size: 102400MiB
+  operation: write
+  scope: global
+
+Initializing worker threads...
+
+Threads started!
+
+Total operations: 5340340 (533566.44 per second)
+
+5215.18 MiB transferred (521.06 MiB/sec)
+
+
+General statistics:
+    total time:                          10.0003s
+    total number of events:              5340340
+
+Latency (ms):
+         min:                                    0.00
+         avg:                                    0.00
+         max:                                   20.15
+         95th percentile:                        0.00
+         sum:                                17303.23
+
+Threads fairness:
+    events (avg/stddev):           1335085.0000/578.45
+    execution time (avg/stddev):   4.3258/0.03
+
+make[1]: Leaving directory '/home/knoppix/sysbench'
+make[1]: Entering directory '/home/knoppix/sysbench'
+Sun 03 Oct 2021 01:56:35 PM EDT
+lscpu || cat /proc/cpuinfo
+Architecture:                    i686
+CPU op-mode(s):                  32-bit
+Byte Order:                      Little Endian
+Address sizes:                   32 bits physical, 32 bits virtual
+CPU(s):                          1
+On-line CPU(s) list:             0
+Thread(s) per core:              1
+Core(s) per socket:              1
+Socket(s):                       1
+Vendor ID:                       GenuineIntel
+CPU family:                      6
+Model:                           13
+Model name:                      Intel(R) Celeron(R) M processor         1.00GHz
+Stepping:                        8
+CPU MHz:                         997.500
+BogoMIPS:                        1995.12
+Vulnerability Itlb multihit:     KVM: Mitigation: VMX unsupported
+Vulnerability L1tf:              Vulnerable
+Vulnerability Mds:               Vulnerable: Clear CPU buffers attempted, no microcode; SMT disabled
+Vulnerability Meltdown:          Vulnerable
+Vulnerability Spec store bypass: Vulnerable
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Full generic retpoline, STIBP disabled, RSB filling
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
+Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov clflush dts acpi mmx fxsr sse sse2 ss tm pbe nx bts cpuid
+free -h || free -m
+              total        used        free      shared  buff/cache   available
+Mem:          482Mi       114Mi        33Mi        46Mi       334Mi       308Mi
+Swap:         362Mi          0B       362Mi
+lspci -nn
+00:00.0 Host bridge [0600]: Intel Corporation Mobile 915GM/PM/GMS/910GML Express Processor to DRAM Controller [8086:2590] (rev 04)
+00:02.0 VGA compatible controller [0300]: Intel Corporation Mobile 915GM/GMS/910GML Express Graphics Controller [8086:2592] (rev 04)
+00:02.1 Display controller [0380]: Intel Corporation Mobile 915GM/GMS/910GML Express Graphics Controller [8086:2792] (rev 04)
+00:1b.0 Audio device [0403]: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) High Definition Audio Controller [8086:2668] (rev 04)
+00:1c.0 PCI bridge [0604]: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) PCI Express Port 1 [8086:2660] (rev 04)
+00:1d.0 USB controller [0c03]: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) USB UHCI #1 [8086:2658] (rev 04)
+00:1d.1 USB controller [0c03]: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) USB UHCI #2 [8086:2659] (rev 04)
+00:1d.2 USB controller [0c03]: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) USB UHCI #3 [8086:265a] (rev 04)
+00:1d.3 USB controller [0c03]: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) USB UHCI #4 [8086:265b] (rev 04)
+00:1d.7 USB controller [0c03]: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) USB2 EHCI Controller [8086:265c] (rev 04)
+00:1e.0 PCI bridge [0604]: Intel Corporation 82801 Mobile PCI Bridge [8086:2448] (rev d4)
+00:1f.0 ISA bridge [0601]: Intel Corporation 82801FBM (ICH6M) LPC Interface Bridge [8086:2641] (rev 04)
+00:1f.1 IDE interface [0101]: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) IDE Controller [8086:266f] (rev 04)
+00:1f.3 SMBus [0c05]: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) SMBus Controller [8086:266a] (rev 04)
+01:00.0 Ethernet controller [0200]: Broadcom Inc. and subsidiaries NetLink BCM5906M Fast Ethernet PCI Express [14e4:1713] (rev 02)
+02:02.0 System peripheral [0880]: IBM Device [1014:0295] (rev 10)
+02:02.1 Serial controller [0700]: IBM Device [1014:0297] (rev 10)
+lsusb
+sysbench --threads=4 --cpu-max-prime=10000 cpu run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:   182.58
+
+General statistics:
+    total time:                          10.0137s
+    total number of events:              1830
+
+Latency (ms):
+         min:                                   11.25
+         avg:                                   21.86
+         max:                                   37.35
+         95th percentile:                       25.28
+         sum:                                39998.99
+
+Threads fairness:
+    events (avg/stddev):           457.5000/0.50
+    execution time (avg/stddev):   9.9997/0.00
+
+sysbench --threads=4 --cpu-max-prime=20000 cpu run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Prime numbers limit: 20000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:    73.52
+
+General statistics:
+    total time:                          10.0154s
+    total number of events:              737
+
+Latency (ms):
+         min:                                   23.16
+         avg:                                   54.27
+         max:                                   66.89
+         95th percentile:                       63.32
+         sum:                                39999.50
+
+Threads fairness:
+    events (avg/stddev):           184.2500/0.43
+    execution time (avg/stddev):   9.9999/0.00
+
+sysbench --threads=4 memory run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Running memory speed test with the following options:
+  block size: 1KiB
+  total size: 102400MiB
+  operation: write
+  scope: global
+
+Initializing worker threads...
+
+Threads started!
+
+Total operations: 5337637 (533300.01 per second)
+
+5212.54 MiB transferred (520.80 MiB/sec)
+
+
+General statistics:
+    total time:                          10.0003s
+    total number of events:              5337637
+
+Latency (ms):
+         min:                                    0.00
+         avg:                                    0.00
+         max:                                   15.06
+         95th percentile:                        0.00
+         sum:                                16752.40
+
+Threads fairness:
+    events (avg/stddev):           1334409.2500/209.68
+    execution time (avg/stddev):   4.1881/0.09
+
+make[1]: Leaving directory '/home/knoppix/sysbench'
