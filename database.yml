@@ -53,3 +53,8 @@
   cpu_prime10000: 1171.24
   cpu_prime20000: 459.11
   mem: 3472.54
+
+- name: Celeron M ULV 1GHz
+  cpu_prime10000: 182.60
+  cpu_prime20000: 73.49
+  mem: 521.06
