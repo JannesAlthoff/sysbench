@@ -22,6 +22,15 @@ jobs:
           sed -i '/index.html/d' .gitignore
           rm README.md
 
+      - name: save rendered pages for debugging
+        if: ${{ github.ref != 'refs/heads/master' }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: html-pages
+          if-no-files-found: error
+          path: |
+            **/*.html
+
       - name: publish
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/master' }}
