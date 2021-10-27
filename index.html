@@ -28,6 +28,26 @@ footer {
   user-select: none;
 }
 
+tr:target td {
+  background-color: rgba(var(--bs-info-rgb), 0.2);
+}
+
+.rowlink {
+  font-size: 150%;
+  font-weight: 90%;
+  padding-top: 0!important;
+  padding-bottom: 0!important;
+  visibility: hidden;
+  border: none;
+  background-color: var(--bg-white)!important;
+}
+td.rowlink a {
+  text-decoration: none!important;
+}
+tr:hover td.rowlink {
+  visibility: visible;
+}
+
 td.name {
   min-width: 10em;
   white-space: nowrap;
@@ -78,6 +98,7 @@ th.desc:after {
   <table id="results" class="table table-hover table-striped">
   <!-- Column header -->
   <tr>
+    <th class="rowlink"></th>
     
     
     <th title="Short name of tested machine" class="">
@@ -110,7 +131,10 @@ th.desc:after {
   </tr>
   <!-- Data rows -->
   
-  <tr>
+  <tr id="azure-e4ds_v4">
+    <td class="rowlink">
+      <a href="#azure-e4ds_v4" title="Permalink">¶</a>
+    </td>
     
     
     <td class="name" title="Virtual machine with support for nested virtualization">
@@ -150,7 +174,10 @@ th.desc:after {
     
   </tr>
   
-  <tr>
+  <tr id="raspberry-pi-4">
+    <td class="rowlink">
+      <a href="#raspberry-pi-4" title="Permalink">¶</a>
+    </td>
     
     
     <td class="name" title="">
@@ -190,7 +217,10 @@ th.desc:after {
     
   </tr>
   
-  <tr>
+  <tr id="atom-x5-z8300">
+    <td class="rowlink">
+      <a href="#atom-x5-z8300" title="Permalink">¶</a>
+    </td>
     
     
     <td class="name" title="">
@@ -230,7 +260,10 @@ th.desc:after {
     
   </tr>
   
-  <tr>
+  <tr id="atom-d2550">
+    <td class="rowlink">
+      <a href="#atom-d2550" title="Permalink">¶</a>
+    </td>
     
     
     <td class="name" title="">
@@ -270,7 +303,10 @@ th.desc:after {
     
   </tr>
   
-  <tr>
+  <tr id="celeron-847">
+    <td class="rowlink">
+      <a href="#celeron-847" title="Permalink">¶</a>
+    </td>
     
     
     <td class="name" title="">
@@ -310,7 +346,10 @@ th.desc:after {
     
   </tr>
   
-  <tr>
+  <tr id="pentium-j5005">
+    <td class="rowlink">
+      <a href="#pentium-j5005" title="Permalink">¶</a>
+    </td>
     
     
     <td class="name" title="">
@@ -350,7 +389,10 @@ th.desc:after {
     
   </tr>
   
-  <tr>
+  <tr id="xeon-e3-1225-v2">
+    <td class="rowlink">
+      <a href="#xeon-e3-1225-v2" title="Permalink">¶</a>
+    </td>
     
     
     <td class="name" title="">
@@ -390,7 +432,10 @@ th.desc:after {
     
   </tr>
   
-  <tr>
+  <tr id="amd-gx-217ga">
+    <td class="rowlink">
+      <a href="#amd-gx-217ga" title="Permalink">¶</a>
+    </td>
     
     
     <td class="name" title="">
@@ -430,7 +475,10 @@ th.desc:after {
     
   </tr>
   
-  <tr>
+  <tr id="core-2-duo-su7300">
+    <td class="rowlink">
+      <a href="#core-2-duo-su7300" title="Permalink">¶</a>
+    </td>
     
     
     <td class="name" title="">
@@ -470,7 +518,10 @@ th.desc:after {
     
   </tr>
   
-  <tr>
+  <tr id="celeron-j1900">
+    <td class="rowlink">
+      <a href="#celeron-j1900" title="Permalink">¶</a>
+    </td>
     
     
     <td class="name" title="">
@@ -510,7 +561,10 @@ th.desc:after {
     
   </tr>
   
-  <tr>
+  <tr id="celeron-m-ulv-1ghz">
+    <td class="rowlink">
+      <a href="#celeron-m-ulv-1ghz" title="Permalink">¶</a>
+    </td>
     
     
     <td class="name" title="">
