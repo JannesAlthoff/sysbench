@@ -1,6 +1,7 @@
 <table id="results" class="table table-hover table-striped">
   <!-- Column header -->
   <tr>
+    <th class="rowlink"></th>
     {% for field_id, field in fields.items() %}
     {% if not field.nocolumn|default(False) %}
     <th title="{{ field.description }}" class="{{ field.convert|default('') }}">
@@ -11,7 +12,10 @@
   </tr>
   <!-- Data rows -->
   {% for entry in data %}
-  <tr>
+  <tr id="{{ entry.name|urlsafe }}">
+    <td class="rowlink">
+      <a href="#{{ entry.name|urlsafe}}" title="Permalink">¶</a>
+    </td>
     {% for field_id, field in fields.items() %}
     {% if not field.nocolumn|default(False) %}
     <td class="{{ field_id }}" title="{{ entry.description }}">

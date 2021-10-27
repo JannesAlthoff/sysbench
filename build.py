@@ -1,4 +1,5 @@
 import os
+import re
 import yaml
 import jinja2
 
@@ -15,6 +16,15 @@ BOOTSTRAP_DEFAULT = {
 CONVERTERS = {
     'int': int,
 }
+
+
+def urlsafe(text, placeholder='-'):
+    '''Replace non-urlsafe characters with placeholder'''
+    if not text:
+        return
+    plain = re.sub(r'[^\w]', placeholder, text)
+    clean = re.sub(r'%s+' % placeholder, placeholder, plain)
+    return clean.lower()
 
 def main():
     '''Build static HTML page from YAML data and Jinja2 templates'''
@@ -33,6 +43,7 @@ def main():
             entry[field_id] = converter(entry[field_id])
 
     jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_DIR))
+    jinja_env.filters['urlsafe'] = urlsafe
     template = jinja_env.get_template('index.html.j2')
 
     bootstrap = BOOTSTRAP_DEFAULT

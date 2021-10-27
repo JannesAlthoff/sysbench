@@ -20,6 +20,26 @@ footer {
   user-select: none;
 }
 
+tr:target td {
+  background-color: rgba(var(--bs-info-rgb), 0.2);
+}
+
+.rowlink {
+  font-size: 150%;
+  font-weight: 90%;
+  padding-top: 0!important;
+  padding-bottom: 0!important;
+  visibility: hidden;
+  border: none;
+  background-color: var(--bg-white)!important;
+}
+td.rowlink a {
+  text-decoration: none!important;
+}
+tr:hover td.rowlink {
+  visibility: visible;
+}
+
 td.name {
   min-width: 10em;
   white-space: nowrap;
