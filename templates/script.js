@@ -83,5 +83,5 @@ function makeHandler(table, column, valueType) {
         }
         header[col].onclick = makeHandler(results, col, valueType);
     }
-    header[1].click()
+    header[2].click()
 })();
