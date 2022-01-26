@@ -58,3 +58,9 @@
   cpu_prime10000: 182.60
   cpu_prime20000: 73.49
   mem: 521.06
+
+- name: ROCKPro64 (RK3399)
+  source: https://wiki.0xsh1v4.eu/books/home-server-build/page/benchmark-results
+  cpu_prime10000: 4865.33
+  cpu_prime20000: 1916.42
+  mem: 3661.75
