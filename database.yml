@@ -64,3 +64,8 @@
   cpu_prime10000: 4865.33
   cpu_prime20000: 1916.42
   mem: 3661.75
+
+- name: i3 2310M
+  cpu_prime10000: 1744.49
+  cpu_prime20000: 716.82
+  mem: 7862.14
