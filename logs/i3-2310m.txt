@@ -1,0 +1,175 @@
+make[1]: Entering directory '/home/user/sysbench'
+Sun 30 Jan 2022 02:54:52 PM UTC
+lscpu || cat /proc/cpuinfo
+Architecture:                    x86_64
+CPU op-mode(s):                  32-bit, 64-bit
+Byte Order:                      Little Endian
+Address sizes:                   36 bits physical, 48 bits virtual
+CPU(s):                          4
+On-line CPU(s) list:             0-3
+Thread(s) per core:              2
+Core(s) per socket:              2
+Socket(s):                       1
+NUMA node(s):                    1
+Vendor ID:                       GenuineIntel
+CPU family:                      6
+Model:                           42
+Model name:                      Intel(R) Core(TM) i3-2310M CPU @ 2.10GHz
+Stepping:                        7
+CPU MHz:                         1869.007
+CPU max MHz:                     2100.0000
+CPU min MHz:                     800.0000
+BogoMIPS:                        4190.52
+Virtualization:                  VT-x
+L1d cache:                       64 KiB
+L1i cache:                       64 KiB
+L2 cache:                        512 KiB
+L3 cache:                        3 MiB
+NUMA node0 CPU(s):               0-3
+Vulnerability Itlb multihit:     KVM: Mitigation: VMX disabled
+Vulnerability L1tf:              Mitigation; PTE Inversion; VMX conditional cache flushes, SMT vulnerable
+Vulnerability Mds:               Mitigation; Clear CPU buffers; SMT vulnerable
+Vulnerability Meltdown:          Mitigation; PTI
+Vulnerability Spec store bypass: Mitigation; Speculative Store Bypass disabled via prctl and seccomp
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Full generic retpoline, IBPB conditional, IBRS_FW, STIBP conditional, RSB filling
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
+Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer xsave avx lahf_lm epb pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid xsaveopt dtherm arat pln pts md_clear flush_l1d
+free -h || free -m
+               total        used        free      shared  buff/cache   available
+Mem:           3.7Gi       877Mi       512Mi       483Mi       2.4Gi       2.2Gi
+Swap:             0B          0B          0B
+lspci -nn
+00:00.0 Host bridge [0600]: Intel Corporation 2nd Generation Core Processor Family DRAM Controller [8086:0104] (rev 09)
+00:01.0 PCI bridge [0604]: Intel Corporation Xeon E3-1200/2nd Generation Core Processor Family PCI Express Root Port [8086:0101] (rev 09)
+00:02.0 VGA compatible controller [0300]: Intel Corporation 2nd Generation Core Processor Family Integrated Graphics Controller [8086:0116] (rev 09)
+00:16.0 Communication controller [0780]: Intel Corporation 6 Series/C200 Series Chipset Family MEI Controller #1 [8086:1c3a] (rev 04)
+00:1a.0 USB controller [0c03]: Intel Corporation 6 Series/C200 Series Chipset Family USB Enhanced Host Controller #2 [8086:1c2d] (rev 05)
+00:1b.0 Audio device [0403]: Intel Corporation 6 Series/C200 Series Chipset Family High Definition Audio Controller [8086:1c20] (rev 05)
+00:1c.0 PCI bridge [0604]: Intel Corporation 6 Series/C200 Series Chipset Family PCI Express Root Port 1 [8086:1c10] (rev b5)
+00:1c.1 PCI bridge [0604]: Intel Corporation 6 Series/C200 Series Chipset Family PCI Express Root Port 2 [8086:1c12] (rev b5)
+00:1c.3 PCI bridge [0604]: Intel Corporation 6 Series/C200 Series Chipset Family PCI Express Root Port 4 [8086:1c16] (rev b5)
+00:1c.5 PCI bridge [0604]: Intel Corporation 6 Series/C200 Series Chipset Family PCI Express Root Port 6 [8086:1c1a] (rev b5)
+00:1d.0 USB controller [0c03]: Intel Corporation 6 Series/C200 Series Chipset Family USB Enhanced Host Controller #1 [8086:1c26] (rev 05)
+00:1f.0 ISA bridge [0601]: Intel Corporation HM65 Express Chipset LPC Controller [8086:1c49] (rev 05)
+00:1f.2 SATA controller [0106]: Intel Corporation 6 Series/C200 Series Chipset Family 6 port Mobile SATA AHCI Controller [8086:1c03] (rev 05)
+00:1f.3 SMBus [0c05]: Intel Corporation 6 Series/C200 Series Chipset Family SMBus Controller [8086:1c22] (rev 05)
+01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GF108M [GeForce GT 540M] [10de:0df4] (rev a1)
+01:00.1 Audio device [0403]: NVIDIA Corporation GF108 High Definition Audio Controller [10de:0bea] (rev ff)
+03:00.0 Network controller [0280]: Qualcomm Atheros AR9285 Wireless Network Adapter (PCI-Express) [168c:002b] (rev 01)
+04:00.0 USB controller [0c03]: Fresco Logic FL1000G USB 3.0 Host Controller [1b73:1000] (rev 04)
+05:00.0 Ethernet controller [0200]: Qualcomm Atheros AR8151 v2.0 Gigabit Ethernet [1969:1083] (rev c0)
+lsusb
+Bus 002 Device 002: ID 8087:0024 Intel Corp. Integrated Rate Matching Hub
+Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 003 Device 002: ID 0781:5567 SanDisk Corp. Cruzer Blade
+Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 001 Device 004: ID 13d3:5205 IMC Networks USB2.0 UVC 2M WebCam
+Bus 001 Device 005: ID 0cf3:3005 Qualcomm Atheros Communications AR3011 Bluetooth
+Bus 001 Device 002: ID 8087:0024 Intel Corp. Integrated Rate Matching Hub
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+sysbench --threads=4 --cpu-max-prime=10000 cpu run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:  1744.49
+
+General statistics:
+    total time:                          10.0012s
+    total number of events:              17452
+
+Latency (ms):
+         min:                                    1.82
+         avg:                                    2.29
+         max:                                   22.52
+         95th percentile:                        2.22
+         sum:                                39988.77
+
+Threads fairness:
+    events (avg/stddev):           4363.0000/54.47
+    execution time (avg/stddev):   9.9972/0.00
+
+sysbench --threads=4 --cpu-max-prime=20000 cpu run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Prime numbers limit: 20000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:   716.82
+
+General statistics:
+    total time:                          10.0038s
+    total number of events:              7173
+
+Latency (ms):
+         min:                                    5.00
+         avg:                                    5.58
+         max:                                   27.36
+         95th percentile:                        5.57
+         sum:                                40004.33
+
+Threads fairness:
+    events (avg/stddev):           1793.2500/8.93
+    execution time (avg/stddev):   10.0011/0.00
+
+sysbench --threads=4 memory run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Running memory speed test with the following options:
+  block size: 1KiB
+  total size: 102400MiB
+  operation: write
+  scope: global
+
+Initializing worker threads...
+
+Threads started!
+
+Total operations: 80532808 (8050832.01 per second)
+
+78645.32 MiB transferred (7862.14 MiB/sec)
+
+
+General statistics:
+    total time:                          10.0001s
+    total number of events:              80532808
+
+Latency (ms):
+         min:                                    0.00
+         avg:                                    0.00
+         max:                                   12.01
+         95th percentile:                        0.00
+         sum:                                23354.31
+
+Threads fairness:
+    events (avg/stddev):           20133202.0000/84454.25
+    execution time (avg/stddev):   5.8386/0.01
+
+make[1]: Leaving directory '/home/user/sysbench'
