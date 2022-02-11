@@ -1,6 +1,9 @@
 SYSBENCH?=sysbench
 .PHONY: sysbench
-sysbench:
+
+
+.PHONY: sysbench.log  # always rebuild
+sysbench.log:
 	@$(SYSBENCH) --version  # Fail early if sysbench is not installed
 	@$(MAKE) .sysbench-run | tee --append $@
 
