@@ -1,5 +1,8 @@
 SYSBENCH?=sysbench
+
+
 .PHONY: sysbench
+sysbench: sysbench.log
 
 
 .PHONY: sysbench.log  # always rebuild
