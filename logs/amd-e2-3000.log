@@ -1,0 +1,356 @@
+make[1]: Entering directory '/home/user/sysbench'
+Mon 14 Mar 2022 07:04:17 PM UTC
+lscpu || cat /proc/cpuinfo
+Architecture:                    x86_64
+CPU op-mode(s):                  32-bit, 64-bit
+Byte Order:                      Little Endian
+Address sizes:                   40 bits physical, 48 bits virtual
+CPU(s):                          2
+On-line CPU(s) list:             0,1
+Thread(s) per core:              1
+Core(s) per socket:              2
+Socket(s):                       1
+NUMA node(s):                    1
+Vendor ID:                       AuthenticAMD
+CPU family:                      22
+Model:                           0
+Model name:                      AMD E2-3000 APU with Radeon(TM) HD Graphics
+Stepping:                        1
+CPU MHz:                         1646.767
+CPU max MHz:                     1650.0000
+CPU min MHz:                     800.0000
+BogoMIPS:                        3293.56
+Virtualization:                  AMD-V
+L1d cache:                       64 KiB
+L1i cache:                       64 KiB
+L2 cache:                        1 MiB
+NUMA node0 CPU(s):               0,1
+Vulnerability Itlb multihit:     Not affected
+Vulnerability L1tf:              Not affected
+Vulnerability Mds:               Not affected
+Vulnerability Meltdown:          Not affected
+Vulnerability Spec store bypass: Mitigation; Speculative Store Bypass disabled via prctl and seccomp
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Full AMD retpoline, STIBP disabled, RSB filling
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
+Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl nonstop_tsc cpuid extd_apicid aperfmperf pni pclmulqdq monitor ssse3 cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt topoext perfctr_nb bpext perfctr_llc hw_pstate proc_feedback ssbd vmmcall bmi1 xsaveopt arat npt lbrv svm_lock nrip_save tsc_scale flushbyasid decodeassists pausefilter pfthreshold overflow_recov
+free -h || free -m
+               total        used        free      shared  buff/cache   available
+Mem:           3.3Gi       611Mi       711Mi       340Mi       2.0Gi       2.1Gi
+Swap:             0B          0B          0B
+lspci -nn
+00:00.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Family 16h Processor Root Complex [1022:1536]
+00:01.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Kabini [Radeon HD 8280 / R3 Series] [1002:9836]
+00:01.1 Audio device [0403]: Advanced Micro Devices, Inc. [AMD/ATI] Kabini HDMI/DP Audio [1002:9840]
+00:02.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Family 16h Processor Function 0 [1022:1538]
+00:02.2 PCI bridge [0604]: Advanced Micro Devices, Inc. [AMD] Family 16h Processor Functions 5:1 [1022:1439]
+00:02.3 PCI bridge [0604]: Advanced Micro Devices, Inc. [AMD] Family 16h Processor Functions 5:1 [1022:1439]
+00:10.0 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] FCH USB XHCI Controller [1022:7814] (rev 01)
+00:11.0 SATA controller [0106]: Advanced Micro Devices, Inc. [AMD] FCH SATA Controller [AHCI mode] [1022:7801] (rev 40)
+00:12.0 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] FCH USB OHCI Controller [1022:7807] (rev 39)
+00:12.2 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] FCH USB EHCI Controller [1022:7808] (rev 39)
+00:13.0 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] FCH USB OHCI Controller [1022:7807] (rev 39)
+00:13.2 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] FCH USB EHCI Controller [1022:7808] (rev 39)
+00:14.0 SMBus [0c05]: Advanced Micro Devices, Inc. [AMD] FCH SMBus Controller [1022:780b] (rev 3a)
+00:14.2 Audio device [0403]: Advanced Micro Devices, Inc. [AMD] FCH Azalia Controller [1022:780d] (rev 02)
+00:14.3 ISA bridge [0601]: Advanced Micro Devices, Inc. [AMD] FCH LPC Bridge [1022:780e] (rev 11)
+00:18.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Family 16h Processor Function 0 [1022:1530]
+00:18.1 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Family 16h Processor Function 1 [1022:1531]
+00:18.2 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Family 16h Processor Function 2 [1022:1532]
+00:18.3 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Family 16h Processor Function 3 [1022:1533]
+00:18.4 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Family 16h Processor Function 4 [1022:1534]
+00:18.5 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Family 16h Processor Function 5 [1022:1535]
+01:00.0 PCI bridge [0604]: Integrated Technology Express, Inc. IT8892E PCIe to PCI Bridge [1283:8892] (rev 41)
+03:00.0 Ethernet controller [0200]: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller [10ec:8168] (rev 0c)
+lsusb
+Bus 002 Device 002: ID 148f:7601 Ralink Technology, Corp. MT7601U Wireless Adapter
+Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 004 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 003 Device 002: ID 062a:4101 MosArt Semiconductor Corp. Wireless Keyboard/Mouse
+Bus 003 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+Bus 006 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 005 Device 002: ID 0dd8:173c Netac Technology Co., Ltd Flash Drive
+Bus 005 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+sysbench --threads=4 --cpu-max-prime=10000 cpu run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:  1569.33
+
+General statistics:
+    total time:                          10.0019s
+    total number of events:              15700
+
+Latency (ms):
+         min:                                    1.27
+         avg:                                    2.55
+         max:                                   41.28
+         95th percentile:                        9.22
+         sum:                                39957.68
+
+Threads fairness:
+    events (avg/stddev):           3925.0000/1.58
+    execution time (avg/stddev):   9.9894/0.01
+
+sysbench --threads=4 --cpu-max-prime=20000 cpu run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Prime numbers limit: 20000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:   612.24
+
+General statistics:
+    total time:                          10.0020s
+    total number of events:              6125
+
+Latency (ms):
+         min:                                    3.25
+         avg:                                    6.53
+         max:                                   43.25
+         95th percentile:                       11.24
+         sum:                                39985.19
+
+Threads fairness:
+    events (avg/stddev):           1531.2500/1.30
+    execution time (avg/stddev):   9.9963/0.00
+
+sysbench --threads=4 memory run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Running memory speed test with the following options:
+  block size: 1KiB
+  total size: 102400MiB
+  operation: write
+  scope: global
+
+Initializing worker threads...
+
+Threads started!
+
+Total operations: 28403894 (2839619.85 per second)
+
+27738.18 MiB transferred (2773.07 MiB/sec)
+
+
+General statistics:
+    total time:                          10.0002s
+    total number of events:              28403894
+
+Latency (ms):
+         min:                                    0.00
+         avg:                                    0.00
+         max:                                   44.01
+         95th percentile:                        0.00
+         sum:                                25003.85
+
+Threads fairness:
+    events (avg/stddev):           7100973.5000/23302.43
+    execution time (avg/stddev):   6.2510/0.09
+
+make[1]: Leaving directory '/home/user/sysbench'
+make[1]: Entering directory '/home/user/sysbench'
+Mon 14 Mar 2022 07:04:50 PM UTC
+lscpu || cat /proc/cpuinfo
+Architecture:                    x86_64
+CPU op-mode(s):                  32-bit, 64-bit
+Byte Order:                      Little Endian
+Address sizes:                   40 bits physical, 48 bits virtual
+CPU(s):                          2
+On-line CPU(s) list:             0,1
+Thread(s) per core:              1
+Core(s) per socket:              2
+Socket(s):                       1
+NUMA node(s):                    1
+Vendor ID:                       AuthenticAMD
+CPU family:                      22
+Model:                           0
+Model name:                      AMD E2-3000 APU with Radeon(TM) HD Graphics
+Stepping:                        1
+CPU MHz:                         1646.772
+CPU max MHz:                     1650.0000
+CPU min MHz:                     800.0000
+BogoMIPS:                        3293.56
+Virtualization:                  AMD-V
+L1d cache:                       64 KiB
+L1i cache:                       64 KiB
+L2 cache:                        1 MiB
+NUMA node0 CPU(s):               0,1
+Vulnerability Itlb multihit:     Not affected
+Vulnerability L1tf:              Not affected
+Vulnerability Mds:               Not affected
+Vulnerability Meltdown:          Not affected
+Vulnerability Spec store bypass: Mitigation; Speculative Store Bypass disabled via prctl and seccomp
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Full AMD retpoline, STIBP disabled, RSB filling
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
+Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl nonstop_tsc cpuid extd_apicid aperfmperf pni pclmulqdq monitor ssse3 cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt topoext perfctr_nb bpext perfctr_llc hw_pstate proc_feedback ssbd vmmcall bmi1 xsaveopt arat npt lbrv svm_lock nrip_save tsc_scale flushbyasid decodeassists pausefilter pfthreshold overflow_recov
+free -h || free -m
+               total        used        free      shared  buff/cache   available
+Mem:           3.3Gi       611Mi       709Mi       340Mi       2.0Gi       2.1Gi
+Swap:             0B          0B          0B
+lspci -nn
+00:00.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Family 16h Processor Root Complex [1022:1536]
+00:01.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Kabini [Radeon HD 8280 / R3 Series] [1002:9836]
+00:01.1 Audio device [0403]: Advanced Micro Devices, Inc. [AMD/ATI] Kabini HDMI/DP Audio [1002:9840]
+00:02.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Family 16h Processor Function 0 [1022:1538]
+00:02.2 PCI bridge [0604]: Advanced Micro Devices, Inc. [AMD] Family 16h Processor Functions 5:1 [1022:1439]
+00:02.3 PCI bridge [0604]: Advanced Micro Devices, Inc. [AMD] Family 16h Processor Functions 5:1 [1022:1439]
+00:10.0 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] FCH USB XHCI Controller [1022:7814] (rev 01)
+00:11.0 SATA controller [0106]: Advanced Micro Devices, Inc. [AMD] FCH SATA Controller [AHCI mode] [1022:7801] (rev 40)
+00:12.0 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] FCH USB OHCI Controller [1022:7807] (rev 39)
+00:12.2 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] FCH USB EHCI Controller [1022:7808] (rev 39)
+00:13.0 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] FCH USB OHCI Controller [1022:7807] (rev 39)
+00:13.2 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] FCH USB EHCI Controller [1022:7808] (rev 39)
+00:14.0 SMBus [0c05]: Advanced Micro Devices, Inc. [AMD] FCH SMBus Controller [1022:780b] (rev 3a)
+00:14.2 Audio device [0403]: Advanced Micro Devices, Inc. [AMD] FCH Azalia Controller [1022:780d] (rev 02)
+00:14.3 ISA bridge [0601]: Advanced Micro Devices, Inc. [AMD] FCH LPC Bridge [1022:780e] (rev 11)
+00:18.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Family 16h Processor Function 0 [1022:1530]
+00:18.1 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Family 16h Processor Function 1 [1022:1531]
+00:18.2 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Family 16h Processor Function 2 [1022:1532]
+00:18.3 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Family 16h Processor Function 3 [1022:1533]
+00:18.4 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Family 16h Processor Function 4 [1022:1534]
+00:18.5 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Family 16h Processor Function 5 [1022:1535]
+01:00.0 PCI bridge [0604]: Integrated Technology Express, Inc. IT8892E PCIe to PCI Bridge [1283:8892] (rev 41)
+03:00.0 Ethernet controller [0200]: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller [10ec:8168] (rev 0c)
+lsusb
+Bus 002 Device 002: ID 148f:7601 Ralink Technology, Corp. MT7601U Wireless Adapter
+Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 004 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 003 Device 002: ID 062a:4101 MosArt Semiconductor Corp. Wireless Keyboard/Mouse
+Bus 003 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+Bus 006 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 005 Device 002: ID 0dd8:173c Netac Technology Co., Ltd Flash Drive
+Bus 005 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+sysbench --threads=4 --cpu-max-prime=10000 cpu run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:  1568.11
+
+General statistics:
+    total time:                          10.0020s
+    total number of events:              15688
+
+Latency (ms):
+         min:                                    1.27
+         avg:                                    2.55
+         max:                                   41.57
+         95th percentile:                        9.22
+         sum:                                39986.47
+
+Threads fairness:
+    events (avg/stddev):           3922.0000/9.95
+    execution time (avg/stddev):   9.9966/0.01
+
+sysbench --threads=4 --cpu-max-prime=20000 cpu run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Prime numbers limit: 20000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:   610.49
+
+General statistics:
+    total time:                          10.0028s
+    total number of events:              6108
+
+Latency (ms):
+         min:                                    3.25
+         avg:                                    6.54
+         max:                                   43.55
+         95th percentile:                       11.24
+         sum:                                39971.72
+
+Threads fairness:
+    events (avg/stddev):           1527.0000/5.05
+    execution time (avg/stddev):   9.9929/0.00
+
+sysbench --threads=4 memory run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Running memory speed test with the following options:
+  block size: 1KiB
+  total size: 102400MiB
+  operation: write
+  scope: global
+
+Initializing worker threads...
+
+Threads started!
+
+Total operations: 28267928 (2826018.55 per second)
+
+27605.40 MiB transferred (2759.78 MiB/sec)
+
+
+General statistics:
+    total time:                          10.0002s
+    total number of events:              28267928
+
+Latency (ms):
+         min:                                    0.00
+         avg:                                    0.00
+         max:                                   44.01
+         95th percentile:                        0.00
+         sum:                                24981.18
+
+Threads fairness:
+    events (avg/stddev):           7066982.0000/35831.93
+    execution time (avg/stddev):   6.2453/0.13
+
+make[1]: Leaving directory '/home/user/sysbench'
