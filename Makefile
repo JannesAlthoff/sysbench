@@ -8,7 +8,7 @@ sysbench: sysbench.log
 .PHONY: sysbench.log  # always rebuild
 sysbench.log:
 	@$(SYSBENCH) --version  # Fail early if sysbench is not installed
-	@$(MAKE) .sysbench-run | tee --append $@
+	@$(MAKE) .sysbench-run 2>&1 | tee --append $@
 
 
 .PHONY: .sysbench-run
