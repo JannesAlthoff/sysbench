@@ -74,3 +74,8 @@
   cpu_prime10000: 1569.33
   cpu_prime20000: 612.24
   mem: 2773.07
+
+- name: Core 2 Extreme Qx9300
+  cpu_prime10000: 3608.64
+  cpu_prime20000: 1464.43
+  mem: 573.36
